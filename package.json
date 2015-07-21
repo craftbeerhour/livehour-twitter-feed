@@ -1,0 +1,22 @@
+{
+  "name": "livehour-twitter-feed",
+  "version": "1.0.0",
+  "description": "simple nodejs twitter feed service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/craftbeerhour/livehour-twitter-feed.git"
+  },
+  "author": "tomwilderspin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craftbeerhour/livehour-twitter-feed/issues"
+  },
+  "homepage": "https://github.com/craftbeerhour/livehour-twitter-feed",
+  "dependencies": {
+    "twitter": "^1.2.5"
+  }
+}
