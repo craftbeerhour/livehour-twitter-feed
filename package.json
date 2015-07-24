@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/craftbeerhour/livehour-twitter-feed",
   "dependencies": {
+    "express": "^4.13.1",
     "twitter": "^1.2.5"
   }
 }
