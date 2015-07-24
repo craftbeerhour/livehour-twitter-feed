@@ -7,22 +7,30 @@ function getRoute(app) {
     };
 };
 
-function newHttpConnection(httpConnection, port) {
+function newHttpConnection(httpConnection, port, createRoutes) {
     
-    return function(callBack) {
+    return function(routes, callBack) {
+        createRoutes(routes);
         httpConnection.listen(port, callBack);
     }
 };
 
+function createGetRoutes(newRoute) {
+    var createRoute = function(routes) {
+        var route = routes.pop();
+        newRoute(route.path, route.callBack);
+        return routes.length > 0 ?
+            createRoute(routes) :
+            true;
+    };
+    
+    return createRoute;
+}
 
 exports.newHttp = function(port) {
     var newRoute = getRoute(app),
-        newHttp = newHttpConnection(http, port);
-        
-        //todo change this shit so more routes can be init from the off..
-        newRoute('/', function(req, res){
-            res.send('<h1>Hello world</h1>');
-        });
+        createRoutes = createGetRoutes(newRoute),
+        newHttp = newHttpConnection(http, port, createRoutes);
         
         return newHttp;
 };

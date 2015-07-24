@@ -8,7 +8,10 @@ var streamConnection = require("./twitterApi/streamConnection.js"),
             access_token_secret: process.env.TWITTER_ACCESS_SECRET
       },
       newStream = streamConnection.stream(connectionDetails),
-      newWebConn = webConnection.newHttp(process.env.PORT)
+      routes = [
+          {path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }}
+          ],
+      newWebConn = webConnection.newHttp(process.env.PORT);
       
       
 /*
@@ -17,7 +20,7 @@ newStream(keyword, function(data){
 });
 */
 
-newWebConn(function(){
+newWebConn(routes, function(){
     console.log('connected!!');
 })
 
