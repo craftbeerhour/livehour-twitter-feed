@@ -1,5 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
+var socketConn = require("./socketConnection.js");
 
 function getRoute(app) {
     return function(path, callBack) {
@@ -31,6 +32,9 @@ exports.newHttp = function(port) {
     var newRoute = getRoute(app),
         createRoutes = createGetRoutes(newRoute),
         newHttp = newHttpConnection(http, port, createRoutes);
+        
+        //todo remove this test for good design :P
+        socketConn.newSocket(http);
         
         return newHttp;
 };
