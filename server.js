@@ -10,8 +10,15 @@ var streamConnection = require("./twitterApi/streamConnection.js"),
       newStream = streamConnection.stream(connectionDetails),
       routes = [
           {path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }}
-          ],
-      newWebConn = webConnection.newHttp(process.env.PORT);
+          ];
+          
+          
+   var   newWebConn = webConnection.newHttp(
+          process.env.PORT,
+          function(socket){ 
+              socket.broadcast.emit('hi');
+              
+          });
       
       
 /*

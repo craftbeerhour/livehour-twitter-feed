@@ -28,13 +28,13 @@ function createGetRoutes(newRoute) {
     return createRoute;
 }
 
-exports.newHttp = function(port) {
+exports.newHttp = function(port, socketConnEvent) {
     var newRoute = getRoute(app),
         createRoutes = createGetRoutes(newRoute),
-        newHttp = newHttpConnection(http, port, createRoutes);
+        newHttp = newHttpConnection(http, port, createRoutes),
+        socketConnection = socketConn.newSocket(http);
         
-        //todo remove this test for good design :P
-        socketConn.newSocket(http);
+        socketConnection(socketConnEvent);
         
         return newHttp;
 };
