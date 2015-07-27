@@ -6,8 +6,14 @@ function newConnectionEvent(ioConnection) {
     };
 }
 
+function callServer(ioConnection) {
+    return function(callBack) {
+        callBack(ioConnection);
+    };
+}
+
 exports.newSocket = function(httpServer) {
     var ioConnection = io(httpServer);
     
-    return newConnectionEvent(ioConnection);
+    return callServer(ioConnection);
 };
