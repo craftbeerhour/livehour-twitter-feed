@@ -1,6 +1,6 @@
 var streamConnection = require("./twitterApi/streamConnection.js"),
     webConnection = require("./webInterface/httpConnection.js"),
-    keyword = '#universitychallenge',
+    keyword = '#craftbeerhour',
       connectionDetails = {
             consumer_key: process.env.TWITTER_CONSUMER_KEY,
             consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
