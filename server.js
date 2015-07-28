@@ -7,26 +7,19 @@ var streamConnection = require("./twitterApi/streamConnection.js"),
             access_token_key: process.env.TWITTER_ACCESS_TOKEN,
             access_token_secret: process.env.TWITTER_ACCESS_SECRET
       },
-      newStream = streamConnection.stream(connectionDetails),
-      routes = [
+    newStream = streamConnection.stream(connectionDetails),
+    routes = [
           {path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }}
-          ];
-          
-          
-   var   newSocket = webConnection.newHttp(process.env.PORT, routes);
-   
-   newSocket(function(socketServer){
-       newStream(keyword, function(data) {
-           socketServer.emit('newTweet', data.text);
-       });
+          ],
+    newSocket = webConnection.newHttp(process.env.PORT, routes);
+
+
+//link input tweet data to outbound sockets.
+ newSocket(function(socketServer){
+   newStream(keyword, function(data) {
+       socketServer.emit('newTweet', data.text);
    });
-      
-      
-/*
-newStream(keyword, function(data){
-    console.log('\n',data.text);
 });
-*/
 
 
 
