@@ -17,7 +17,8 @@
     <script>
       var socket = io();
       socket.on('newTweet', function(msg){
-        $('#messages').prepend($('<li>').text(msg));
+        
+        $('#messages').prepend($('<li>').text(msg.text));
       });
     </script>
   </body>
