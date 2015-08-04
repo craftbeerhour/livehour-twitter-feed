@@ -1,7 +1,6 @@
 var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     webConnection = require("./webInterface/httpConnection.js"),
     twitterApi = require("./twitterApi/streamConnection.js"),
-    firebaseRepository = consumerConnection.connection(process.env.FIREBASE_API_URL),
     routes = [
           { path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }},
           { path: '/count', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/count.html'); }}
