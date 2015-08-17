@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
     
-      var firebase = new Firebase('https://cbh-livehour.firebaseio.com/tweets');
+      var firebase = new Firebase('https://cbh-livehour.firebaseio.com/ig_tweets');
       var count = 0;
       firebase.on("child_added", function(snapshot, prevChildKey) {
           $('#counter').text('Tweet count: '+ count++);

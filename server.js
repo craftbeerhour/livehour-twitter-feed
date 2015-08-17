@@ -13,7 +13,7 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     },
     newSocket = webConnection.newHttp(process.env.PORT, routes),
     firebaseConnection = consumerConnection.connection(process.env.FIREBASE_API_URL),
-    tweetRepository = firebaseConnection.child('tweets'),
+    tweetRepository = firebaseConnection.child('cbh-tweets'),
     twitterStream = twitterApi.stream(twitterConnectionDetails),
     keyword = '#craftbeerhour';
 
