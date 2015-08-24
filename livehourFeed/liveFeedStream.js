@@ -1,7 +1,7 @@
 
-function getFilteredStream(filterTweetData) {
+function getFilteredStream(filterTweetData, socketConnection, channel) {
     return function(tweet) {
-        return filterTweetData(tweet);
+        socketConnection.emit(channel, filterTweetData(tweet));
     };
 }
 
@@ -10,15 +10,20 @@ function filterTweetData() {
     return function(rawTweet) {
         return {
             text: rawTweet.text,
-            isRetweet:'',
-            userImage:'',
-            images:[{},{}],
-            userName: '',
-            userHandle:''
+            isRetweet:rawTweet.hasOwnProperty('retweeted_status'),
+            userProfileImageUrl:rawTweet.user.profile_image_url,
+            images:[],
+            links:[],
+            userName: rawTweet.user.name,
+            userHandle:rawTweet.user.screen_name
         }
     }
 }
 
-module.exports = function(TwitterStream, SocketConnection) {
+exports.filter = function(socketConnection, channel) {
     
+    return getFilteredStream(
+        filterTweetData(),
+        socketConnection
+    );
 }

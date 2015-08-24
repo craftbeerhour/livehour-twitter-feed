@@ -1,6 +1,7 @@
 var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     webConnection = require("./webInterface/httpConnection.js"),
     twitterApi = require("./twitterApi/streamConnection.js"),
+    filterStream = require("./livehourFeed/liveFeedStream.js"),
     routes = [
           { path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }},
           { path: '/count', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/count.html'); }}
@@ -15,15 +16,17 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     firebaseConnection = consumerConnection.connection(process.env.FIREBASE_API_URL),
     tweetRepository = firebaseConnection.child('cbh-tweets'),
     twitterStream = twitterApi.stream(twitterConnectionDetails),
-    keyword = '#craftbeerhour';
+    keyword = '#craftbeerhour',
+    channel = 'tweet';
 
 
 //link input tweet data to outbound sockets.
- newSocket(function(socketServer){
-   twitterStream(keyword, function(data) {
-       socketServer.emit('newTweet', data);
-       tweetRepository.push(data);
-   });
+
+newSocket(function(socketServer){
+    twitterStream(
+        keyword,
+        filterStream.filter(socketServer, channel)
+        );
 });
 
 
