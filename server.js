@@ -14,10 +14,10 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     },
     newSocket = webConnection.newHttp(process.env.PORT, routes),
     firebaseConnection = consumerConnection.connection(process.env.FIREBASE_API_URL),
-    tweetRepository = firebaseConnection.child('cbh-tweets'),
+    tweetRepository = firebaseConnection.child('xfactor-test-tweets'),
     twitterStream = twitterApi.stream(twitterConnectionDetails),
-    keyword = '#craftbeerhour',
-    channel = 'tweet';
+    keyword = '#XFactor',
+    channel = 'newTweet';
 
 
 //link input tweet data to outbound sockets.
@@ -28,6 +28,7 @@ newSocket(function(socketServer){
         filterStream.filter(socketServer, channel)
         );
 });
+
 
 
 

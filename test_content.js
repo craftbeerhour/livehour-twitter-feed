@@ -3,15 +3,31 @@
 
 
 
-function createElement(tag, attributeList, content) {
+function createElement(tagName, attributeList) {
     
-    var createAttributes = function(attributes, element) {
+    var createAttributes = function(element, attributeList) {
         
+        var attribute = attributeList.pop();
         
-        return attributes.length == 0 ?
+        element.setAttribute(attribute.name, attribute.value);
+        
+        return attributeList.length == 0 ?
             element :
-            createAttributes();
+            createAttributes(element, attributeList);
     };
     
-    return document.createElement(tag);
+    return createAttributes(document.createElement(tagName), attributeList);
 }
+
+function appendAttributesToElement(element)
+{
+    return function (attributeList) {
+        
+        attributeList.reduce(function(previousValue, currentValue, index, array){
+            //todo get this down to a single step of map & reduce.
+        });
+            
+        
+    };
+}
+

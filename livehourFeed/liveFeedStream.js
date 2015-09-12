@@ -24,6 +24,7 @@ exports.filter = function(socketConnection, channel) {
     
     return getFilteredStream(
         filterTweetData(),
-        socketConnection
+        socketConnection,
+        channel
     );
 }
