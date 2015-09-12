@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require("express");
+var app = express();
 var http = require('http').Server(app);
 var socketConn = require("./socketConnection.js");
 
@@ -33,6 +34,9 @@ exports.newHttp = function(port, routes) {
         createRoutes = createGetRoutes(newRoute),
         newHttp = newHttpConnection(http, port, createRoutes),
         socketConnection = socketConn.newSocket(http);
+        
+        //set static public dir
+        app.use(express.static('public'));
         
         newHttp(routes, function(){ console.log('connected!!') });
         

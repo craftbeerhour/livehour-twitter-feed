@@ -4,7 +4,8 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     filterStream = require("./livehourFeed/liveFeedStream.js"),
     routes = [
           { path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }},
-          { path: '/count', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/count.html'); }}
+          { path: '/count', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/count.html'); }},
+          { path: '/feed', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/livefeed.html'); }}
           ],
     twitterConnectionDetails = {
         consumer_key: process.env.TWIT_CONSUMER_KEY,
@@ -20,7 +21,7 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     channel = 'newTweet';
 
 
-//link input tweet data to outbound sockets.
+//link input tweet data to outbound listening sockets.
 
 newSocket(function(socketServer){
     twitterStream(
@@ -28,6 +29,10 @@ newSocket(function(socketServer){
         filterStream.filter(socketServer, channel)
         );
 });
+
+
+//todo pipe tweet data to firebase
+
 
 
 
