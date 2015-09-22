@@ -38,7 +38,7 @@ exports.newHttp = function(port, routes) {
         //set static public dir
         app.use(express.static('public'));
         
-        newHttp(routes, function(){ console.log('connected!!') });
+        newHttp(routes, function(){ console.log('connected!!') }); //todo allow for callback to be passed in for new connection.
         
         return socketConnection;
 };

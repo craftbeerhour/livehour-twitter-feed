@@ -17,7 +17,7 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     firebaseConnection = consumerConnection.connection(process.env.FIREBASE_API_URL),
     tweetRepository = firebaseConnection.child('xfactor-test-tweets'),
     twitterStream = twitterApi.stream(twitterConnectionDetails),
-    keyword = '#XFactor',
+    keyword = '#craftbeerhour',
     channel = 'newTweet';
 
 

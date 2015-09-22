@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    
+    <title>live hour</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +18,18 @@
     <![endif]-->
   </head>
   <body>
-    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4"></div>
     <div class="col-md-4">
         <ul id="messages"></ul>
+        <div class="row">
+        <div class="span4">
+          <img class="img-circle" data-src="holder.js/140x140">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
     </div>
-    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4"></div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script>
@@ -31,6 +38,13 @@
         
         $('#messages').prepend($('<li>').text(msg.text));
       });
+      
+      function createTweet(tweetData) {
+        
+        //create tweet element.
+        
+      }
+      
     </script>
   </body>
 </html>
