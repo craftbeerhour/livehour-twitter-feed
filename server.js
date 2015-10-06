@@ -5,7 +5,9 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     routes = [
           { path: '/', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/index.html'); }},
           { path: '/count', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/count.html'); }},
-          { path: '/feed', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/livefeed.html'); }}
+          { path: '/feed', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/livefeed.html'); }},
+          { path: '/timeline', callBack: function(req, res){ res.sendFile(__dirname + '/webInterface/htmlTemplates/timeline.html'); }}
+          
           ],
     twitterConnectionDetails = {
         consumer_key: process.env.TWIT_CONSUMER_KEY,
