@@ -1,3 +1,5 @@
+require('dotenv').config({silent:true});
+
 var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     webConnection = require("./webInterface/httpConnection.js"),
     twitterApi = require("./twitterApi/streamConnection.js"),
@@ -19,7 +21,7 @@ var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     firebaseConnection = consumerConnection.connection(process.env.FIREBASE_API_URL),
     tweetRepository = firebaseConnection.child('xfactor-test-tweets'),
     twitterStream = twitterApi.stream(twitterConnectionDetails),
-    keyword = '#craftbeerhour',
+    keyword = 'bbc',
     channel = 'newTweet';
 
 
