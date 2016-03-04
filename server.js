@@ -1,3 +1,5 @@
+require('dotenv').config({silent:true});
+
 var consumerConnection = require("./firebaseApi/consumerConnection.js"),
     webConnection = require("./webInterface/httpConnection.js"),
     twitterApi = require("./twitterApi/streamConnection.js"),

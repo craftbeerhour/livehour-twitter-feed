@@ -13,8 +13,11 @@ function newHttpConnection(httpConnection, port, createRoutes) {
     
     return function(routes, callBack) {
         createRoutes(routes);
-        httpConnection.listen(port, callBack);
-    }
+        httpConnection.listen(port, function(){
+            console.log('listening on port %s', port);
+            callBack();
+        });
+    };
 };
 
 function createGetRoutes(newRoute) {
